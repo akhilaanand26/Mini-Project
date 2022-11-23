@@ -1,0 +1,127 @@
+{% extends 'base_owner.html' %}
+{% load static %}
+
+{% block title %}Find your sweet home{% endblock %}
+
+{% block tags %}{% endblock %}
+
+{% block content %}
+    <div class="properties-page">
+        <h1 class="text-2xl font-bold mb-6">All Properties</h1>
+        <div class="top flex items-center justify-end gap-x-2 mb-4">
+            <a href="#" class="btn btn-success flex items-center gap-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                  </svg>                  
+                Add Property
+                </a>
+        </div>
+        
+        <div class="flex flex-col">
+            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="overflow-hidden">
+                  <table class="min-w-full text-center">
+                    <thead class="border-b bg-gray-800">
+                     
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                          Img
+                        </th>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                          Title
+                        </th>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                          City
+                        </th>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                          District
+                        </th>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                            Zip Code
+                          </th>
+                          <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                            Is Occupied
+                          </th>
+                          <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                            Actions
+                          </th>
+                        </thead>
+                    <thead class="border-b">
+                    <tbody>
+                      <tr class="bg-white border-b">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                          AB2
+                        </td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            Kozhencherry
+                        
+                          </td>
+                          <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            Pathanamthitta
+                          </td>
+                          <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            689643
+                          </td>
+                          <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            yes
+                        </td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            edit/delete
+                        </td>
+                       
+                        </tr class="bg-grey border-b">
+                        <tr class="bg-white border-b">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                              BH1
+                            </td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                Kozhencherry
+                              </td>
+                              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                Pathanamthitta
+                              </td>
+                              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                689643
+                              </td>
+                              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                no
+                            </td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                edit/delete
+                            </td>
+                            
+                            </tr class="bg-white border-b">
+                            <tr class="bg-grey border-b">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                  BH2
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    Kozhencherry
+                                  </td>
+                                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    Pathanamthitta
+                                  </td>
+                                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    689643
+                                  </td>
+                                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    no
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    edit/delete
+                                </td>
+                                
+                                </tr class="bg-white border-b">
+                            </tbody>
+                        </thead>
+          
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+                            
+{% endblock %}

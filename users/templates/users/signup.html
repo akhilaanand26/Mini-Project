@@ -1,0 +1,307 @@
+{% extends "base_auth.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+    <div class="bg-white shadow">
+        <div class="flex flex-col items-center justify-center gap-y-4 px-6 py-4 w-full max-w-lg">
+            <h1 class="mb-4 font-bold text-3xl text-center">Sign Up</h1>
+
+            <form onsubmit="return validate();" method="POST" novalidate class="form w-full">
+                {% csrf_token %}
+                
+                {{ form.non_field_errors }}
+
+                {% if common_error %}
+                    <div class="common-error">
+                        {{ common_error }}
+                    </div>
+                {% endif %}
+
+                <div class="row flex items-center gap-x-4">
+                    <div class="form-group fname {% if form.first_name.errors %}error{% endif %}">
+                        <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+                        {{ form.first_name }}
+                        
+                        {{ form.first_name.errors }}
+                        <ul class="errorlist">
+                            <li class="error-fname"></li>
+                        </ul>
+
+                        
+                    </div>
+                    <div class="form-group lname {% if form.last_name.errors %}error{% endif %}">
+                        <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+                        {{ form.last_name }}
+                        
+                        {{ form.last_name.errors }}
+                        <ul class="errorlist">
+                            <li class="error-lname"></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="form-group email {% if form.email.errors %}error{% endif %}">
+                    <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                    {{ form.email }}
+                    
+                    {{ form.email.errors }}
+                    <ul class="errorlist">
+                        <li class="error-email"></li>
+                    </ul>
+
+                </div>
+
+                <div class="form-group pwd1 {% if form.password1.errors %}error{% endif %}">
+                    <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+                    {{ form.password1 }}
+                    
+                    {{ form.password1.errors }}
+                    <ul class="errorlist">
+                        <li class="error-pwd1"></li>
+                    </ul>
+
+                </div>
+                <div class="form-group pwd2 {% if form.password2.errors %}error{% endif %}">
+                    <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+                    {{ form.password2 }}
+                    
+                    {{ form.password2.errors }}
+                    <ul class="errorlist">
+                        <li class="error-pwd2"></li>
+                    </ul>
+
+                </div>
+
+                <div class="form-group {% if form.role.errors %}error{% endif %}">
+                    <label for="{{ form.role.id_for_label }}">I am a?</label>
+                    {{ form.role }}
+                    
+                    {{ form.role.errors }}
+                </div>
+
+
+                <button type="submit" class="btn btn-primary w-full font-bold mt-4 mb-4">Sign Up</button>
+            </form>
+
+            <p class="text-sm text-gray-500">Already have an account?
+                <a href="{% url 'login' %}" class="font-bold">Login</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
+ 
+<!--
+function fnameValidation(inputTxt){
+    
+    var regx = /^[a-zA-Z]+$/;
+    var textField = document.getElementById("name");
+        
+    if(inputTxt.value != '' ){
+    
+        if(inputTxt.value.length >= 2){
+        
+            if(inputTxt.value.match(regx)){
+                textField.textContent = '';
+                textField.style.color = "green";
+                    
+            }else{
+                textField.textContent = 'only characters allowded';
+                textField.style.color = "red";
+            }  
+        }else{
+            textField.textContent = 'your input mut me more than two chracters';
+            textField.style.color = "red";
+        }   
+    }else{
+        textField.textContent = 'your input is empty';
+        textField.style.color = "red";
+    }
+}
+
+function lnameValidation(inputTxt){
+    
+    var regx = /^[a-zA-Z  ]+$/;
+    var textField = document.getElementById("names");
+        
+    if(inputTxt.value != '' ){
+    
+        if(inputTxt.value.length >= 1){
+        
+            if(inputTxt.value.match(regx)){
+                textField.textContent = '';
+                textField.style.color = "green";
+                    
+            }else{
+                textField.textContent = 'only characters allowded';
+                textField.style.color = "red";
+            }  
+        }else{
+            textField.textContent = 'your input mut me more than two chracters';
+            textField.style.color = "red";
+        }   
+    }else{
+        textField.textContent = 'your input is empty';
+        textField.style.color = "red";
+    }
+}
+
+
+
+function emailValidation(inputTxt){
+    // ^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$
+    var regx = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+    var textField = document.getElementById("mail");
+        
+    if(inputTxt.value != '' ){
+        if(inputTxt.value.match(regx)){
+            textField.textContent = '';
+            textField.style.color = "green";
+        }else{
+            textField.textContent = 'email is not valid!!!';
+            textField.style.color = "red";
+        }  
+    }else{
+        textField.textContent = 'your input is empty';
+        textField.style.color = "red";
+    }
+}
+
+
+
+
+function cpasswordValidation(inputTxt){
+    
+    var regx =  document.getElementById("pwd").value;
+    var regy =  document.getElementById("cpwd").value;
+    var textField = document.getElementById("pass2");
+    var textField1 = document.getElementById("pass1");
+        
+    if(inputTxt.value != '' ){    
+            if(regx == regy){
+                textField.textContent = '';
+                textField.style.color = "green";
+                    
+            }else{
+                textField.textContent = 'not match';
+                textField.style.color = "red";
+            }  
+        }else{
+            textField.textContent = '';
+            textField.style.color = "red";
+        }  
+}-->
+
+
+ <!--{% block script %}
+    <script type="text/javascript">
+        function validate() {
+            // form element
+            var form = document.querySelector('.form')
+
+            // each input fields
+            var fName = document.querySelector('#id_first_name').value
+            var lName = document.querySelector('#id_last_name').value
+            var email = document.querySelector('#id_email').value
+            var pwd1 = document.querySelector('#id_password1').value
+            var pwd2 = document.querySelector('#id_password2').value
+
+ 
+            // each <div> with class form-group
+            var fNameFormGroup = document.querySelector('.fname')
+            var lNameFormGroup = document.querySelector('.lname')
+            var emailFormGroup = document.querySelector('.email')
+            var pwd1FormGroup = document.querySelector('.pwd1')
+            var pwd2FormGroup = document.querySelector('.pwd2')
+
+            // each error <li> (placholders to put error)
+            var errorFName = document.querySelector('.error-fname')
+            var errorLName = document.querySelector('.error-lname')
+            var errorEmail = document.querySelector('.error-email')
+            var errorPwd1 = document.querySelector('.error-pwd1')
+            var errorPwd2 = document.querySelector('.error-pwd2')
+
+            const isFirstNameValid = (fname) => {
+                const re = new RegExp(
+                "^(?=.[a-z])(?=.[A-Z])"
+                );
+                return re.test(fname);
+            };
+
+            const isLastNameValid = (lname) => {
+                const re = new RegExp(
+                "^(?=.[a-z])(?=.[A-Z])"
+                );
+                return re.test(lname);
+            };
+
+
+            const isEmailValid = (email) => {
+                const re =
+                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            };
+
+            const isPasswordSecure = (password) => {
+                const re = new RegExp(
+                "^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*])(?=.{8,})"
+                );
+                return re.test(password);
+            };
+
+            // first name validation
+            if (fName == "") {
+                errorFName.innerHTML = 'First Name is required';
+
+                fNameFormGroup.classList.add('error')
+
+               return false
+            }
+            else if (!isFirstNameValid(fName))
+            {
+                errorFName.innerHTML = 'Invalid FirstName';
+
+                fNameFormGroup.classList.add('error')
+
+               return false
+            } 
+            else if (lName == "") {
+                errorLName.innerHTML = 'Last Name is required';
+
+                fNameFormGroup.classList.add('error')
+
+                return false
+            } else if (email == "") {
+                errorEmail.innerHTML = 'Email is required';
+
+                emailFormGroup.classList.add('error')
+                return false
+            } else if (isEmailValid(email) == false) {
+                errorEmail.innerHTML = 'Invalid email';
+
+                emailFormGroup.classList.add('error')
+                return false
+            } else if (isPasswordSecure(pwd1) == false) {
+                errorPwd1.innerHTML = 'Insecure password';
+
+                pwd1FormGroup.classList.add('error')
+                return false
+            }   else if (pwd1 != pwd2) {
+                errorPwd2.innerHTML = "Password's doesn't match";
+
+                pwd2FormGroup.classList.add('error')               
+                return false
+            }
+            else {
+                // submit forms
+                form.submit();
+             }
+
+        }
+    </script>
+   
+     
+  
+{% endblock %}-->
